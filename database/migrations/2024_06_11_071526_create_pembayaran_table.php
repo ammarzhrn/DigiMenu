@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pembayaran', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('id_order')->unsigned();
+            $table->boolean('status')->default('0');
+            $table->foreign('id_order')->on('order')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -12,7 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('menu', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('id_meja')->unsigned();
+            $table->string('nama_menu');
+            $table->enum('ketegori', ['Steak', 'Ayam', 'Minuman']);
+            $table->string('gambar');
+            $table->integer('harga');
+            $table->string('add_ons');
+            $table->text('desc');
+            $table->boolean('availability')->default('0');
+            $table->foreign('id_meja')->on('meja')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

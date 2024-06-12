@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('history', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('id_pembayaran')->unsigned();
+            $table->boolean('status')->default('0');
+            $table->foreign('id_pembayaran')->on('pembayaran')->references('id')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamp('date');
             $table->timestamps();
         });
     }

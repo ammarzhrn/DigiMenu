@@ -5,7 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class history extends Model
+class History extends Model
 {
     use HasFactory;
+    protected $table = 'history';
+    protected $guarded = [];
+
+    public function pembayaran()
+    {
+        return $this->belongsTo(Pembayaran::class, 'id_pembayaran');
+    }
 }

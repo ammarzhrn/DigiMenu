@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pembayaran;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller

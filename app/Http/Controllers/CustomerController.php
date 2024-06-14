@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\customer;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Customer;
+use App\Models\Order;
+use App\Models\Menu;
+use App\Models\Meja;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -12,7 +15,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customer = Customer::all();
+        $menu = Menu::all();
+        return view('customer.index', compact('customer', 'menu'));
     }
 
     /**
@@ -28,15 +33,21 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Order::create($input);
+        return back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(customer $customer)
+    public function show($id)
     {
-        //
+        $data = Menu::find($id);
+        $meja = Meja::find($id);
+        $customer = Customer::find($id);
+
+        return view('customer.detail', compact('data','meja','customer'));
     }
 
     /**

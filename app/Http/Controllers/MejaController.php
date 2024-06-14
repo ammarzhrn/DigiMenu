@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\meja;
+use App\Models\Meja;
 use Illuminate\Http\Request;
 
 class MejaController extends Controller
